@@ -24,7 +24,6 @@
         }(document, 'script', 'facebook-jssdk'));</script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
     <body>
         <!--hero-unit-->
         <div class="hero-unit">
@@ -59,6 +58,7 @@
                                 <div class="sub-form">
                                     <form role="form" id="mc-form" method="POST" action="<?php echo base_url() ?>welcome/saveEmail">
                                         <input type="email" placeholder="Email Address" required="" value="" name="email">
+                                        <input type="hidden" value="<?php echo $this->uri->segment(2);?>" name="friend_code">
                                         <button type="submit" class="button" id="mc-subscribe" value="Subscribe" name="subscribe">GET ACCESS</button>
                                     </form>
                                     <p class="terms">* We won’t spam</p>

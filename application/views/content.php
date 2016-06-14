@@ -104,12 +104,14 @@
                 <p id="mc-notification"></p>
                 <p>Want to cut the line and get instant access</p>
                 <small>Get 5 of your friends to signup with this unique url</small>
-                <input type="text" id="gencode" value="" class="success-input"  />
+                <div class="input-group">
+                    <input type="text" class="form-control" id="gencode" aria-describedby="basic-addon1">
+                </div>
             </div>
             <br>
             <div class="col-md-12 col-sm-12 clearfix"> 
                 <!--social-->
-                <ul class="social text-center" >
+                <ul class="social text-center" style="width: 100%;" >
                     <li style="margin-left: -25px;">
                         <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a> 
                         <script>!function (d, s, id) {
@@ -138,7 +140,8 @@
                                 var s = document.getElementsByTagName('script')[0];
                                 s.parentNode.insertBefore(po, s);
                             })();
-                        </script></li>
+                        </script>
+                    </li>
                     <li>                    
                         <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
                         <script type="IN/Share"></script>

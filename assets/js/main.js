@@ -1,11 +1,11 @@
-$(function() {
+$(function () {
     "use strict";
 
 
     /* ==========================================================================
-   countdown
-   ========================================================================== */
-    
+     countdown
+     ========================================================================== */
+
     $('.countdown').downCount({
         date: '12/15/2015 12:00:00' // m/d/y
     });
@@ -13,24 +13,24 @@ $(function() {
 
 
     /* ==========================================================================
-   Preload
-   ========================================================================== */
-    
-    $(window).load(function() {
-        
+     Preload
+     ========================================================================== */
+
+    $(window).load(function () {
+
         $("#status").fadeOut();
-        
+
         $("#preloader").delay(1000).fadeOut("slow");
     })
 
 
 
     /* ==========================================================================
-   onscroll animation
-   ========================================================================== */
-    
+     onscroll animation
+     ========================================================================== */
+
     if ($(window).width() > 992) {
-        
+
         $(window).fadeThis({
             'reverse': false
         });
@@ -39,56 +39,58 @@ $(function() {
 
 
     /* ==========================================================================
-       Number animation
-       ========================================================================== */
-    
-    
-    
-    
-    $('.counter').waypoint(function() {
-        
+     Number animation
+     ========================================================================== */
+
+    $("input#gencode").click(function () {
+        $(this).select();
+    });
+
+
+    $('.counter').waypoint(function () {
+
         var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
-        
+
         $('.total-number-1').animateNumber({
             number: 500000, //change value here
             numberStep: comma_separator_number_step
         }, 2000);
-        
+
         $('.total-number-2').animateNumber({
             number: 80000, //change value here
             numberStep: comma_separator_number_step
         }, 2000);
-        
+
         $('.total-number-3').animateNumber({
             number: 30000, //change value here
             numberStep: comma_separator_number_step
         }, 2000);
-        
+
         $('.total-number-4').animateNumber({
             number: 10000, //change value here
             numberStep: comma_separator_number_step
         }, 2000);
-    
-    
-    
+
+
+
     }, {
         offset: '80%'
-    
+
     });
 
 
     /* ==========================================================================
      sub form
      ========================================================================== */
-    
+
     var $form = $('#mc-form');
-    
-    $('#mc-subscribe').on('click', function(event) {
+
+    $('#mc-subscribe').on('click', function (event) {
         if (event)
             event.preventDefault();
         register($form);
     });
-        
+
     function register($form) {
         $.ajax({
             type: $form.attr('method'),
@@ -96,11 +98,11 @@ $(function() {
             data: $form.serialize(),
             cache: false,
             dataType: 'json',
-            success: function(data) {
+            success: function (data) {
                 if (!data.success) {
                     $('#mc-notification').hide().html('<span class="alert">Could not connect to server. Please try again later.</span>').fadeIn("slow");
                     $('#mc-form input[type="email"]').removeClass('success-input').addClass('error-input');
-                    
+
                 } else {
                     $('#mc-notification').hide().html('<span class="success"><i class="fa fa-paper-plane"></i>' + 'Awesome! We sent you a confirmation email.' + '</span>').fadeIn("slow");
                     $('#mc-form input[type="email"]').removeClass('error-input').addClass('success-input');
@@ -113,13 +115,13 @@ $(function() {
     }
 
     /* ==========================================================================
-   Contact Form
-   ========================================================================== */
-    
-    
+     Contact Form
+     ========================================================================== */
+
+
     $('#contact-form').validate({
-        highlight: function(element, errorClass) {
-            $(element).fadeOut(function() {
+        highlight: function (element, errorClass) {
+            $(element).fadeOut(function () {
                 $(element).fadeIn();
             });
         },
@@ -145,16 +147,17 @@ $(function() {
             },
             message: "<i class='fa fa-info-circle'></i>Please enter your message"
         },
-        submitHandler: function(form) {
+        submitHandler: function (form) {
             $(form).ajaxSubmit({
                 type: "POST",
                 data: $(form).serialize(),
                 url: "/welcome/sendEmailContact",
-                success: function() {
-                    $('.success-sf').slideDown();
-                },
-                error: function() {
-                    $('.error-sf').slideDown();
+                success: function (data) {
+                    if (data.success) {
+                        $('.success-sf').slideDown();
+                    } else {
+                        $('.error-sf').slideDown();
+                    }
                 }
             });
         }
@@ -162,22 +165,22 @@ $(function() {
 
 
     /* ==========================================================================
-   ScrollTop Button
-   ========================================================================== */
-    
-    
-    $(window).scroll(function() {
+     ScrollTop Button
+     ========================================================================== */
+
+
+    $(window).scroll(function () {
         if ($(this).scrollTop() > 200) {
             $('.scroll-top a').fadeIn(200);
         } else {
             $('.scroll-top a').fadeOut(200);
         }
     });
-    
-    
-    $('.scroll-top a').click(function(event) {
+
+
+    $('.scroll-top a').click(function (event) {
         event.preventDefault();
-        
+
         $('html, body').animate({
             scrollTop: 0
         }, 1000);
@@ -186,15 +189,15 @@ $(function() {
     /* ==========================================================================
      style switcher
      ========================================================================== */
-    
-    
-    $(".panel-control").click(function() {
-        
+
+
+    $(".panel-control").click(function () {
+
         $('#customizer').toggleClass('panel-open');
-    
-    
+
+
     });
-    
+
     function swapStyleSheet(sheet) {
         document.getElementById('pagestyle').setAttribute('href', sheet);
     }
